@@ -1,2 +1,1 @@
-* bullet point 1
-* bullet point 2
+* follow the instructions here https://thoughtbot.com/blog/how-to-git-with-unity
