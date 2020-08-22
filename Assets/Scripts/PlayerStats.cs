@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement; // Allows to return to main menu
 //Could be used for lots of different characters, but in this program is only used for the main player
 //Could improve PlayerStats and EnemyStats script wth a CharacterStats interface due to their similar atributes and methods ?
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : CharacterStats
 {
-    public static PlayerStats instance; //creates a a PlayerStats variable called instance
+    public static PlayerStats instance; //creates a a PlayerStats object called instance
 
     void Awake()
     {
@@ -18,39 +18,28 @@ public class PlayerStats : MonoBehaviour
     }
     //this creates an instance of PlayerStats for other scripts to interact with, and assigns it to the current instance (the player)
 
-    //Atributes
-    public int maxHealth = 100;
-    public int currentHealth { get; private set; } // emsures only this script can change currentHealth, even if others can access
-
+    
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = 100;
         currentHealth = maxHealth;
         print($"Player has {currentHealth} HP");
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    // is a public method, since it will need to be called by an enemy object
-    // the enemy object will tell the player object how much damage it takes through this method
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage; //decreases character health by damage
-        if (currentHealth <= 0) { Death(); } //checks if character has no health left
-    }
 
+    //GainHelth is a public method since it will need to be called by other scripts, like HealthKit.cs
     public void GainHealth(int healthGained)
     {
         currentHealth += healthGained; //increases playerHealth by healthGained
         if (currentHealth > maxHealth) { currentHealth = maxHealth; } //ensures character cannot exceed max health
         print(currentHealth);
     }
-    public void Death()
+    public override void Die()
     {
+        base.Die();//calls use function from base class
         SceneManager.LoadScene(2); // Loads the death scene
 
     }

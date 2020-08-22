@@ -35,7 +35,7 @@ public class Interactables : MonoBehaviour
             rend.sharedMaterial = material[0]; //standard material
         }
     }
-    //is called when the interactable is interacted with
+    //is called when the interactable is interacted with (virtual so can be overriden by children classes)
     public virtual void Interact()
     {
         Destroy(gameObject);//once interacted cannot be interacted with again so destorys the gameObject for interactable

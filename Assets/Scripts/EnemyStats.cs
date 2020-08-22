@@ -1,86 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿//This scipt manages the stats of enemies
+
 using UnityEngine;
 using Random = UnityEngine.Random; //takes the random class from unity engine namespace and assigns it the name Random
 
-//This scipt manages the stats of enemies
-
-public class EnemyStats : MonoBehaviour
+public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass of CharacterStats, which it inherits from
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-    GameObject respawner;
-    Transform spawnPoint;
-    Animator anim;
-    public double liveTime;
-    double nextSpawnTime = 10;
-    public GameObject majorHealthKit; //a game object variable that will be assigned the value of the major health kit 
+    
+    GameObject respawner; //this will be assigned to the value of the invisible game object where enemies are spawned in
+    Animator anim; //this will be assigned the animator component for the game object this script is assigned to (the enemy skeleton)
+    public GameObject majorHealthKit; //a game object variable that will be assigned the value of the major health kit game object that i previosuly created
     int dropChance; //this value will stores a random number that will determine whether the recently killed enemy will drop a health kit
     Vector3 deathLocation; //this vector 3 variable will store the vector 3 position of the enemy skeleton when it dies
 
     // Start is called before the first frame update
     void Start()
     {
-        //majorHealthKit = GameObject.FindGameObjectWithTag("MajorHealthKit");
-        respawner = GameObject.FindGameObjectWithTag("Spawner");
-        anim = GetComponent<Animator>();
-        spawnPoint = GetComponent<Transform>();
-        currentHealth = maxHealth;
-        print($"Enemy skeleton current health is {currentHealth}");
+        majorHealthKit = GameObject.FindGameObjectWithTag("MajorHealthKit"); //searches all the gameobjects in the unity project untill it finds the one assigned the "MajorHealthKit" tag and then assigns that to this gameobject variable
+        respawner = GameObject.FindGameObjectWithTag("Spawner"); // searches all the gameobjects in the unity project untill it finds the one assigned the "Spawner" tag and then assigns that to this gameobject variable
+        anim = GetComponent<Animator>(); //assigned the value of the animator component of the game object this script is assigned to (the enemy Skeleton)
+
+        maxHealth = 100; //sets the maxHealth of the enemy to 100
+        currentHealth = maxHealth; //sets the starting health of the enemy to the maxhealth
     }
 
-    /*private void Update()
-    {
-        liveTime = Math.Round(Time.time);
-        if (liveTime == nextSpawnTime)
-        {
-            respawner.GetComponent<Spawner>().SpawnEnemySkeleton(anim);
-            nextSpawnTime += nextSpawnTime + 10;x
-        }
-    }*/
-
+    //When called this method will spawn in another enemy skeleton
     void Respawn()
     {
-        respawner.GetComponent<Spawner>().SpawnEnemySkeleton(anim);
+        respawner.GetComponent<Spawner>().SpawnEnemySkeleton(anim); //calls the SpawnEnemySkeleton method with the anim atribute as a parameter , from the Spawner script (which is assigned to the respawner gameobject)
 
     }
 
-    public void TakeDamage(int damage)
+    //this method is called when the enemy reaches 0 health or less
+    public override void Die()
     {
-        currentHealth -= damage;
-        //Play hurt animation
+        base.Die();//calls use function from base classs (CharacterStats)
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-       
         //removes enemy from the game
         Destroy(gameObject);
-        //disable enemy
+        //disable enemy's scripting
         this.enabled = false; //disables script
         GetComponent<CapsuleCollider>().enabled = false; //disables colllisions for the enemy
         //spawn in enemy drops
-        dropChance = Random.Range(0, 2);
-        print($"dropchance is{dropChance}");
-        if (dropChance == 1)
+        dropChance = Random.Range(0, 2); //random number of either 0 or 1
+        print($"dropchance is {dropChance}"); //tells programmer wether a health kit should've dropped (can be removed)
+        if (dropChance == 1) //if dropChance = 1 health kit is spawned, if 0 it is not
         {
-            deathLocation = GetComponent<Transform>().position;
-            spawnHealhKit(deathLocation);
+            deathLocation = GetComponent<Transform>().position; // gets the vector3 position of the enemy when it died
+            SpawnHealhKit(deathLocation); //calls the spawnHealthKit method with the deathLocation as a parameter
         }
-
-
-
         //spawn new enemy
         Respawn();
     }
     //this method should spawn a health kit at the specifed location
-    void spawnHealhKit(Vector3 location)
+    void SpawnHealhKit(Vector3 location)
     {
         // increases the y value of the location by one to ensure that the health kits's model is above ground
         location += new Vector3(0, 1, 0);
