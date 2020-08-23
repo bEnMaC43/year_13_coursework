@@ -10,7 +10,7 @@ public class mainMenu : MonoBehaviour
     //This method is for when the play game button is clicked
     public void PlayGame()
     {
-        SceneManager.LoadScene(1); // Loads the main game scene
+        SceneManager.LoadScene(4); // Loads the username enter screen
     }
     //This method is for when the quit button is clicked
     public void QuitGame()

@@ -24,7 +24,9 @@ public class LeaderboardManager : MonoBehaviour
     void Start()
     {
         string finalTime = PlayerPrefs.GetString("finalTime"); //takes the final time on the timer when the player died (see OnScreenTimer.cs to see the origin of this values)
-        WriteToTextFile(finalTime,leaderboardTextFile); //writes it to the leaderboard text file (which is displayed at leaderboard screen)
+        string userName = PlayerPrefs.GetString("userName"); //assigns the userName the player entered to string variable userName
+        string submision = $"{finalTime} {userName}";
+        WriteToTextFile(submision,leaderboardTextFile); //writes it to the leaderboard text file (which is displayed at leaderboard screen)
         
         //The purpose of this section is to display the contents of the leaderboard on the screen 
         //TextToList method called
