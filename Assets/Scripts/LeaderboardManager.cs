@@ -1,4 +1,5 @@
-﻿//This script handles how the leaderboard is accEsssed and updated and also how it is displayed to the user at the leaderboard scene (scene 3)
+﻿//This script handles how the leaderboard is accesssed and updated and also how it is displayed to the user at the leaderboard scene (scene 3)
+//It inherits from DeathScreen and therfore also inherits from DeathScreen's parent class MenuUI
 
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.IO;
 using System.Linq;
 
 
-public class LeaderboardManager : MonoBehaviour
+public class LeaderboardManager : DeathScreen //inherits from DeathScreen so that it can reuse the backToMenu() method
 {
     //Location of where the text lines will spawn in 3d space (assigned in unity editor)
     public Transform contentWindow;
@@ -23,11 +24,8 @@ public class LeaderboardManager : MonoBehaviour
     // Start() acts like main() traditionally would since it is called on the first frame as long as this script is enabled
     void Start()
     {
-        string finalTime = PlayerPrefs.GetString("finalTime"); //takes the final time on the timer when the player died (see OnScreenTimer.cs to see the origin of this values)
-        string userName = PlayerPrefs.GetString("userName"); //assigns the userName the player entered to string variable userName
-        string submision = $"{finalTime} {userName}";
-        WriteToTextFile(submision,leaderboardTextFile); //writes it to the leaderboard text file (which is displayed at leaderboard screen)
-        
+        SubmitToLeaderBoard();
+
         //The purpose of this section is to display the contents of the leaderboard on the screen 
         //TextToList method called
         List <string> fileLines = TextToList(leaderboardTextFile);
@@ -57,11 +55,6 @@ public class LeaderboardManager : MonoBehaviour
         //returns that list
         return fileLines;
     }
-    //Is called when the on screen menu buton is clicked, and loads player into the main menu
-    public void returnToMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
 
     //when called this method will write to a text file
     public void WriteToTextFile(string newEntry, string textFile)
@@ -71,6 +64,16 @@ public class LeaderboardManager : MonoBehaviour
         StreamWriter sw = new StreamWriter(textFile,true); //peramters contain the bool value for weather it should append or not
         sw.WriteLine(newEntry); //writes the newEntry string parameter to the text file
         sw.Close(); //file is closed
+    }
+
+    //The purpose of this method is to submit the player's time to the leaderboard
+    public void SubmitToLeaderBoard()
+    {
+        string finalTime = PlayerPrefs.GetString("finalTime"); //takes the final time on the timer when the player died (see OnScreenTimer.cs to see the origin of this values)
+        string userName = PlayerPrefs.GetString("userName"); //assigns the userName the player entered to string variable userName
+        string submision = $"{finalTime} {userName}";
+        WriteToTextFile(submision, leaderboardTextFile); //writes it to the leaderboard text file (which is displayed at leaderboard screen)
+
     }
 
 }

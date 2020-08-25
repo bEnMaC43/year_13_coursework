@@ -3,31 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Required to change scenes
 
-//This script manages the main menu, allowing for the play and quit buttons to take the user to the correct destination
+//This script manages the start menu, which allows for the player to navigate the game
 
-public class mainMenu : MonoBehaviour
+public class mainMenu : menuUI
 {
-    //This method is for when the play game button is clicked
-    public void PlayGame()
+    //The following method is the override of the inherited PlayGame method, that rather than directing the player straight to the main game it send them to the username entering screen
+    public override void PlayGame()
     {
-        SceneManager.LoadScene(4); // Loads the username enter screen
-    }
-    //This method is for when the quit button is clicked
-    public void QuitGame()
-    {
-        Application.Quit();
-        print("Quit");
+        base.PlayGame();
+        SceneManager.LoadScene(4); //Changes the inherited PlayGame method to load the username enter screen rather than the main game
     }
 
-    //this method is called when leaderboaard button clicked
+    //this method is called when leaderboard button clicked, it directs the user to the leaderboards
     public void showLeaderboard()
     {
         SceneManager.LoadScene(3); //loads the leaderboard scene
     }
 
-    //called on death screen when menu button clicked
-    public void backToMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
 }
