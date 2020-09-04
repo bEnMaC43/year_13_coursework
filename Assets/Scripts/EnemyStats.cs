@@ -1,6 +1,9 @@
 ﻿//This scipt manages the stats of enemies
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random; //takes the random class from unity engine namespace and assigns it the name Random
 
 public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass of CharacterStats, which it inherits from
@@ -11,16 +14,34 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
     public GameObject majorHealthKit; //a game object variable that will be assigned the value of the major health kit game object that i previosuly created
     int dropChance; //this value will stores a random number that will determine whether the recently killed enemy will drop a health kit
     Vector3 deathLocation; //this vector 3 variable will store the vector 3 position of the enemy skeleton when it dies
+    float startTime;
+    float timeJump = 10f;
+    int currentTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         majorHealthKit = GameObject.FindGameObjectWithTag("MajorHealthKit"); //searches all the gameobjects in the unity project untill it finds the one assigned the "MajorHealthKit" tag and then assigns that to this gameobject variable
         respawner = GameObject.FindGameObjectWithTag("Spawner"); // searches all the gameobjects in the unity project untill it finds the one assigned the "Spawner" tag and then assigns that to this gameobject variable
         anim = GetComponent<Animator>(); //assigned the value of the animator component of the game object this script is assigned to (the enemy Skeleton)
 
         maxHealth = 100; //sets the maxHealth of the enemy to 100
         currentHealth = maxHealth; //sets the starting health of the enemy to the maxhealth
+    }
+    //Called every frame
+    void Update() 
+    {
+        currentTime = System.Convert.ToInt32(Time.time);
+        print (Time.time);
+        print(startTime + timeJump);
+
+        if (Time.time == startTime + timeJump) 
+        {
+            timeJump += 10; //increases time untill another one spawns
+            Respawn();
+        
+        }
     }
 
     //When called this method will spawn in another enemy skeleton
