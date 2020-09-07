@@ -1,5 +1,5 @@
 ﻿//This scipt manages the stats of enemies
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +14,9 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
     public GameObject majorHealthKit; //a game object variable that will be assigned the value of the major health kit game object that i previosuly created
     int dropChance; //this value will stores a random number that will determine whether the recently killed enemy will drop a health kit
     Vector3 deathLocation; //this vector 3 variable will store the vector 3 position of the enemy skeleton when it dies
-    float startTime;
-    float timeJump = 10f;
+    float timeJump = 10f; // This value stores the rate at wich new enemies spawn without the player killing one in seconds
     int currentTime;
+    float startTime;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +32,13 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
     //Called every frame
     void Update() 
     {
-        currentTime = System.Convert.ToInt32(Time.time);
-        print (Time.time);
-        print(startTime + timeJump);
+        currentTime = System.Convert.ToInt32(Time.time); //stores integer version of time
 
-        if (Time.time == startTime + timeJump) 
+
+        if (currentTime == startTime + timeJump) //is executed ever *timeJump* seconds
         {
             timeJump += 10; //increases time untill another one spawns
-            Respawn();
+            Respawn(); //spawns one
         
         }
     }
