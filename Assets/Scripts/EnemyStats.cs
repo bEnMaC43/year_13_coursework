@@ -14,9 +14,9 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
     public GameObject majorHealthKit; //a game object variable that will be assigned the value of the major health kit game object that i previosuly created
     int dropChance; //this value will stores a random number that will determine whether the recently killed enemy will drop a health kit
     Vector3 deathLocation; //this vector 3 variable will store the vector 3 position of the enemy skeleton when it dies
-    float timeJump = 10f; // This value stores the rate at wich new enemies spawn without the player killing one in seconds
-    int currentTime;
-    float startTime;
+    float timeJump = 5.0f; // This value stores the rate at wich new enemies spawn without the player killing one in seconds
+    int currentTime; //will store the integer equivalent of "Time.time" (the current elapsed time)
+    float startTime; //stores the value of Time.time when start() is ran    
 
     // Start is called before the first frame update
     void Start()
@@ -30,14 +30,24 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
         currentHealth = maxHealth; //sets the starting health of the enemy to the maxhealth
     }
     //Called every frame
-    void Update() 
+    void FixedUpdate() 
     {
+        if (timeJump > 1.5f) //unless timeJump reaches the minimimum time between spawns of 1.5, then...
+        {
+            if (currentTime > 20 && currentTime % 5 == 0) //once time reaches 20 every 5 seconds the time between enemy spawns decreases by 0.5
+            {
+                print("Increasing spawn rate");
+                timeJump -= 0.5f; // decreases the time between enemy spawns
+            }
+        }
         currentTime = System.Convert.ToInt32(Time.time); //stores integer version of time
 
-
+        //print(currentTime);
+        //print(startTime + timeJump);
         if (currentTime == startTime + timeJump) //is executed ever *timeJump* seconds
         {
-            timeJump += 10; //increases time untill another one spawns
+            print("spawning enemy");
+            timeJump += 5.0f; //increases time untill another one spawns
             Respawn(); //spawns one
         
         }
@@ -68,8 +78,6 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
             deathLocation = GetComponent<Transform>().position; // gets the vector3 position of the enemy when it died
             SpawnHealhKit(deathLocation); //calls the spawnHealthKit method with the deathLocation as a parameter
         }
-        //spawn new enemy
-        Respawn();
     }
     //this method should spawn a health kit at the specifed location
     void SpawnHealhKit(Vector3 location)
