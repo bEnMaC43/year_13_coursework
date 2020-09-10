@@ -28,11 +28,11 @@ public class PlayerCombat : MonoBehaviour
                 Punch();
                 nextAttackTime = Time.time + 1f / punchAttackRate;
             }
-            if (Input.GetKeyDown(KeyCode.JoystickButton3))
+            /*if (Input.GetKeyDown(KeyCode.JoystickButton3))
             {
                 Kick();
                 nextAttackTime = Time.time + 1f / kickAttackRate;
-            }
+            }*/
         }
  
     }
@@ -49,7 +49,7 @@ public class PlayerCombat : MonoBehaviour
         //Damage those enemies
         foreach(Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyStats>().TakeDamage(20);
+            enemy.GetComponent<EnemyStats>().TakeDamage(35);
         }
 
 

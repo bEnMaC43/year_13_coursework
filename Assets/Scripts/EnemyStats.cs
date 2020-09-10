@@ -21,7 +21,7 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
     // Start is called before the first frame update
     void Start()
     {
-        startTime = Time.time;
+        startTime = Time.timeSinceLevelLoad;
         majorHealthKit = GameObject.FindGameObjectWithTag("MajorHealthKit"); //searches all the gameobjects in the unity project untill it finds the one assigned the "MajorHealthKit" tag and then assigns that to this gameobject variable
         respawner = GameObject.FindGameObjectWithTag("Spawner"); // searches all the gameobjects in the unity project untill it finds the one assigned the "Spawner" tag and then assigns that to this gameobject variable
         anim = GetComponent<Animator>(); //assigned the value of the animator component of the game object this script is assigned to (the enemy Skeleton)
@@ -32,15 +32,8 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
     //Called every frame
     void FixedUpdate() 
     {
-        if (timeJump > 1.5f) //unless timeJump reaches the minimimum time between spawns of 1.5, then...
-        {
-            if (currentTime > 20 && currentTime % 5 == 0) //once time reaches 20 every 5 seconds the time between enemy spawns decreases by 0.5
-            {
-                print("Increasing spawn rate");
-                timeJump -= 0.5f; // decreases the time between enemy spawns
-            }
-        }
-        currentTime = System.Convert.ToInt32(Time.time); //stores integer version of time
+        
+        currentTime = System.Convert.ToInt32(Time.timeSinceLevelLoad); //stores integer version of time
 
         //print(currentTime);
         //print(startTime + timeJump);
@@ -78,6 +71,8 @@ public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass o
             deathLocation = GetComponent<Transform>().position; // gets the vector3 position of the enemy when it died
             SpawnHealhKit(deathLocation); //calls the spawnHealthKit method with the deathLocation as a parameter
         }
+        //Spawn in new enemy
+        Respawn();
     }
     //this method should spawn a health kit at the specifed location
     void SpawnHealhKit(Vector3 location)
