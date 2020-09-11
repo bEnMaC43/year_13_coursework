@@ -1,8 +1,5 @@
 ﻿//This class manages the menu screen that appears when the player has died
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 public class DeathScreen : menuUI
 {

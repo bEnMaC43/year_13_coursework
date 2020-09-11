@@ -1,7 +1,5 @@
 ﻿//This script is the parent class for Enemy Stats and Player Stats
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour

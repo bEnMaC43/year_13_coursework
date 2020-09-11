@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 //This script manages all the methods for spawning game objects in runtime
@@ -17,13 +15,6 @@ public class Spawner : MonoBehaviour
         spawnLocation = GetComponent<Transform>(); //gets the transform value of the game object that this script is assigned to 
         //transform values store location and orientation
     }
-
-    
-    /* DELETE THIS COMMENT BLOCK WHEN FINISHED
-    At the moment the following method requires the skeletons animator component to be passed through as a paramter, which introduces no issues for this project
-    However this could introduce complications in future projects
-    I might decide to make this method work without any paramaters to solve this but it isn't nessecary 
-    DELETE THIS COMMENT BLOCK WHEN FINISHED */
 
     //When called this method creates a new skeleton enemy in the game
     public void  SpawnEnemySkeleton (Animator anim)

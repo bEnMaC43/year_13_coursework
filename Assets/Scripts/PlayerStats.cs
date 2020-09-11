@@ -1,8 +1,4 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement; // Allows to return to main menu
+﻿using UnityEngine.SceneManagement; // Allows to return to main menu
 
 //This script controls the players stats
 //Could be used for lots of different characters, but in this program is only used for the main player

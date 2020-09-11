@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 //This script allows for the player to attack enemies
@@ -28,11 +27,6 @@ public class PlayerCombat : MonoBehaviour
                 Punch();
                 nextAttackTime = Time.time + 1f / punchAttackRate;
             }
-            /*if (Input.GetKeyDown(KeyCode.JoystickButton3))
-            {
-                Kick();
-                nextAttackTime = Time.time + 1f / kickAttackRate;
-            }*/
         }
  
     }
@@ -44,37 +38,16 @@ public class PlayerCombat : MonoBehaviour
 
         //Detect enemies in range of attack
         //"Collider" data type is just unity components thta provide collision detection
-        Collider[] hitEnemies=  Physics.OverlapSphere(punchAttackPoint.position, attackRange, enemyLayers); // creates 2d array of any objects on enemyLayer inside attack range 
+        Collider[] hitEnemies = Physics.OverlapSphere(punchAttackPoint.position, attackRange, enemyLayers); // creates 2d array of any objects on enemyLayer inside attack range 
 
         //Damage those enemies
-        foreach(Collider enemy in hitEnemies)
+        foreach (Collider enemy in hitEnemies)
         {
             enemy.GetComponent<EnemyStats>().TakeDamage(35);
         }
 
 
     }
-    //this method is called when the player wants to have the character do the kick attack (y button)
-    //14/08/2020 - for some reason the kick attack is broken and breaks the game, no clue where the problem is or why.Game works as inteneded when only using punch attack.
-    void Kick()
-    {
-        // Play an attack animation
-        anim.SetTrigger("Kick");
-
-        //Detect enemies in range of attack
-        //"Collider" data type is just unity components thta provide collision detection
-        Collider[] hitEnemies = Physics.OverlapSphere(kickAttackPoint.position, attackRange, enemyLayers); // creates 2d array of any objects on enemyLayer inside attack range 
-
-        //Damage those enemies
-        foreach (Collider enemy in hitEnemies)
-        {
-            enemy.GetComponent<EnemyStats>().TakeDamage(40);
-            print("40 damage inflicted by the player");
-        }
-
-
-    }
-
     //all of this just helps visualise the players attack range inside of the unity editor, can be removed when finished
     private void OnDrawGizmosSelected()
     {

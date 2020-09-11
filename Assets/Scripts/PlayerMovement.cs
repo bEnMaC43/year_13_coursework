@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //This script governs everything related to the player's movement
 //This script enables to player object to move correctly when there is a joystick input

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 //this script enables interactble game objects
 
 public class Interactables : MonoBehaviour

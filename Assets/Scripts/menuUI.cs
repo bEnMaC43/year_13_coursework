@@ -1,8 +1,6 @@
 ﻿//This script is the parent class for all menu screens in the game
 //It provides the methods required to start the game and also quit the game entirely
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -8,8 +8,6 @@
 //This script controls the enemy AI which governs their movement
 //It also enables enemies to attack the player
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 //This script controls the enemy movement and combat

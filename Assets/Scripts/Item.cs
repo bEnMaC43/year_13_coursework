@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 //This script is the parent class Item that allows for item objects to be creates
 
 [CreateAssetMenu(fileName = "New Item",menuName = "Inventory/Item")] // Allows for us to create item objects inside of unity, under the inventory tab

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Linq;
-
+using UnityEngine.UIElements;
 
 public class LeaderboardManager : DeathScreen //inherits from DeathScreen so that it can reuse the backToMenu() method
 {
@@ -19,7 +19,7 @@ public class LeaderboardManager : DeathScreen //inherits from DeathScreen so tha
     public GameObject recallTextObject;
 
     //string value for the already created leaderboard text file from the assets folder of the unity project
-    string leaderboardTextFile = Application.streamingAssetsPath + "/Text Files/" + "Leaderboard" + ".txt"; 
+    string leaderboardTextFile = Application.streamingAssetsPath + "/Text Files/" + "Leaderboard" + ".txt";
 
     // Start() acts like main() traditionally would since it is called on the first frame as long as this script is enabled
     void Start()
@@ -28,24 +28,24 @@ public class LeaderboardManager : DeathScreen //inherits from DeathScreen so tha
 
         //The purpose of this section is to display the contents of the leaderboard on the screen 
         //TextToList method called
-        List <string> fileLines = TextToList(leaderboardTextFile);
+        List<string> fileLines = TextToList(leaderboardTextFile);
         //This takes each line of the leaderboard text file and assigns it the text gameobject that appears on screen in the unity editor
         //float textHeight = 235; //The y variable of the first line of text in the unity editor
         float heightDecrease = 40; //this variable stores the distance between the first line and the next one
-        fileLines.Sort();//Sort() sorts the times into accending order 
-        foreach (string line in fileLines.Select(x => x).Reverse()) //sorts through the the list in reverse order (descending) and then writes them to the on screen UI
+        fileLines = sortLeaderboard(fileLines);//returns the sorted string list of the leaderboard
+        foreach (string line in fileLines) //goes through the leaderboard line by line showing the results on screen
         {
-               
+
             GameObject newLine = Instantiate(recallTextObject, contentWindow); //the game object for the new line is created with the instantiate method, with its type of game object (text) and the position
             newLine.GetComponent<Text>().text = line; //this actually sets the on screen text to display the string value for this line
             newLine.GetComponent<Transform>().position -= new Vector3(-10f, heightDecrease, 0f); //the height of this new line is then decreased by the set value
             heightDecrease += 40; //This value is increased every time the loop is ran to ensure each line is below the last
-            
+
         }
     }
 
 
-    
+
     //When called this method should take a text file saved to string value and returns it as a list where each line is a new element
     static List<string> TextToList(string readFromFilePath)
     {
@@ -61,7 +61,7 @@ public class LeaderboardManager : DeathScreen //inherits from DeathScreen so tha
     {
         print("writing...");
         // creates a streamwritter object from streamwritter class from System.IO
-        StreamWriter sw = new StreamWriter(textFile,true); //peramters contain the bool value for weather it should append or not
+        StreamWriter sw = new StreamWriter(textFile, true); //peramters contain the bool value for weather it should append or not
         sw.WriteLine(newEntry); //writes the newEntry string parameter to the text file
         sw.Close(); //file is closed
     }
@@ -76,9 +76,30 @@ public class LeaderboardManager : DeathScreen //inherits from DeathScreen so tha
 
     }
 
-    public void sortLeaderboard()
+    //This method uses a bubble sort algorythm to sort the leaderboard
+    public List<string> sortLeaderboard(List<string> Array) //it takes the unsorted list of all the times from the leaderboard text file
     {
+        string temp;
+
+        // This foor loop is executed for every item in the array, with x inceasing by 1 each time
+        // Once all these foor loops have been executed the bubble sort is complete
+        for (int x = 0; x < Array.Count - 1; x++) 
+        {
+            // Then for each of those loop, another for loop is executed where each time an item in the array is compared with the one next to it
+            //Once all these foor loop's have been executed there has been one pass of the bubble sort
+            for (int i = 0; i < Array.Count - (1 + x); i++)
+            {
+                //the first two items (line 1 and line 1 of the text file) of the array are compared
+                if (string.Compare(Array[i], Array[i + 1]) == -1) //c# string.Compare method returns -1 if the strings are not in the correct order (largest time first) 
+                {
+                    //with the use of the string value temp, the two items in the array switch places
+                    temp = Array[i];
+                    Array[i] = Array[i + 1];
+                    Array[i + 1] = temp;
+                }
+            }
+        }
+        return Array; //the sorted array is returned
 
     }
-
 }

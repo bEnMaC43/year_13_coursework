@@ -1,7 +1,5 @@
 ﻿//This script manages the username input screen, where the player enters the name they would like displayed on the leaderboard
 //UserNameManager class is a subclass from menuUI
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;

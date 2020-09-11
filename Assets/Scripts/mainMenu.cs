@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement; // Required to change scenes
+﻿using UnityEngine.SceneManagement; // Required to change scenes
 
 //This script manages the start menu, which allows for the player to navigate the game
 

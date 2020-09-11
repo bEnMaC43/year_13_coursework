@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0040399614, g: 0.00022068075, b: 0.000000054677844,
+  m_IndirectSpecularColor: {r: 0.004039964, g: 0.00022068102, b: 0.000000054677844,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -32209,6 +32209,11 @@ PrefabInstance:
       propertyPath: m_ObstacleAvoidanceType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4366432397954063346, guid: f84cd45a567e93b4f8e7c5e1bcb18c30,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4366432397954063347, guid: f84cd45a567e93b4f8e7c5e1bcb18c30,
         type: 3}
       propertyPath: majorHealthKit
@@ -32222,7 +32227,7 @@ PrefabInstance:
     - target: {fileID: 4366432397954063351, guid: f84cd45a567e93b4f8e7c5e1bcb18c30,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.74
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 4366432397954063351, guid: f84cd45a567e93b4f8e7c5e1bcb18c30,
         type: 3}
@@ -32232,7 +32237,7 @@ PrefabInstance:
     - target: {fileID: 4366432397954063351, guid: f84cd45a567e93b4f8e7c5e1bcb18c30,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.66
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 4366432397954063351, guid: f84cd45a567e93b4f8e7c5e1bcb18c30,
         type: 3}

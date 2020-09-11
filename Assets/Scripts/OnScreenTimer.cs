@@ -1,8 +1,6 @@
 ﻿//This script manaages the on screen time UI element, that changes every second to show the current time the player has lasted
 //The time must be converted from the pre existing "Time.time" float in unity that keeps track of time spent with application open, to a string of format (minutes):(seconds)
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;//Whenver this is in use it allows for scripts to interact with UI objects from the unity editor
 
