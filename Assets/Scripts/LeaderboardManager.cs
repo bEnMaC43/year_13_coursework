@@ -1,14 +1,11 @@
 ﻿//This script handles how the leaderboard is accesssed and updated and also how it is displayed to the user at the leaderboard scene (scene 3)
 //It inherits from DeathScreen and therfore also inherits from DeathScreen's parent class MenuUI
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.IO;
 using System.Linq;
-using UnityEngine.UIElements;
 
 public class LeaderboardManager : DeathScreen //inherits from DeathScreen so that it can reuse the backToMenu() method
 {
