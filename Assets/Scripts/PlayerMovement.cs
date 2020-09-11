@@ -8,8 +8,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //variables
-    public float moveSpeed;
+    public float moveSpeed; 
     private Rigidbody rb;
 
     private Vector3 moveInput;

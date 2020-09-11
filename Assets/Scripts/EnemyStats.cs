@@ -8,20 +8,19 @@ using Random = UnityEngine.Random; //takes the random class from unity engine na
 
 public class EnemyStats : CharacterStats //The EnemyStats class is a subcalass of CharacterStats, which it inherits from
 {
-    
-    GameObject respawner; //this will be assigned to the value of the invisible game object where enemies are spawned in
-    Animator anim; //this will be assigned the animator component for the game object this script is assigned to (the enemy skeleton)
-    public GameObject majorHealthKit; //a game object variable that will be assigned the value of the major health kit game object that i previosuly created
+    GameObject respawner; //this empty unity GameObject will be assigned to the value of the invisible game object where enemies are spawned in
+    Animator anim; //this empty unity animtor object will be assigned the animator component for the game object this script is assigned to (the enemy skeleton)
+    public GameObject majorHealthKit; //this public unity gameobject that will be assigned the value of the major health kit game object that i previosuly created
     int dropChance; //this value will stores a random number that will determine whether the recently killed enemy will drop a health kit
     Vector3 deathLocation; //this vector 3 variable will store the vector 3 position of the enemy skeleton when it dies
     float timeJump = 5.0f; // This value stores the rate at wich new enemies spawn without the player killing one in seconds
     int currentTime; //will store the integer equivalent of "Time.time" (the current elapsed time)
-    float startTime; //stores the value of Time.time when start() is ran    
+    float startTime; 
 
     // Start is called before the first frame update
     void Start()
     {
-        startTime = Time.timeSinceLevelLoad;
+        startTime = Time.timeSinceLevelLoad; //stores the time since the main game scene has loaded (at this point should be 0)
         majorHealthKit = GameObject.FindGameObjectWithTag("MajorHealthKit"); //searches all the gameobjects in the unity project untill it finds the one assigned the "MajorHealthKit" tag and then assigns that to this gameobject variable
         respawner = GameObject.FindGameObjectWithTag("Spawner"); // searches all the gameobjects in the unity project untill it finds the one assigned the "Spawner" tag and then assigns that to this gameobject variable
         anim = GetComponent<Animator>(); //assigned the value of the animator component of the game object this script is assigned to (the enemy Skeleton)

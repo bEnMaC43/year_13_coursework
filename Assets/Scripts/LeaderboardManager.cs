@@ -76,4 +76,9 @@ public class LeaderboardManager : DeathScreen //inherits from DeathScreen so tha
 
     }
 
+    public void sortLeaderboard()
+    {
+
+    }
+
 }
