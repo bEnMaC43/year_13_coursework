@@ -21,7 +21,7 @@ public class LeaderboardManager : DeathScreen //inherits from DeathScreen so tha
     // Start() acts like main() traditionally would since it is called on the first frame as long as this script is enabled
     void Start()
     {
-        SubmitToLeaderBoard();
+        SubmitToLeaderBoard(); //submits the players score to the unsorted leaderboard
 
         //The purpose of this section is to display the contents of the leaderboard on the screen 
         //TextToList method called

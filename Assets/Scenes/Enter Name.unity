@@ -411,8 +411,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Navigate to the "Enter Text..." prompt, enter your username with the keyboard
-    then hit enter to return controls to your controller
+  m_text: Enter a username of 3 letters or less, then click Enter on your keyboard
+    before navigating to the Enter Button that will appear
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -481,10 +481,10 @@ MonoBehaviour:
   m_margin: {x: 4.1793823, y: 0, z: -1.384491, w: 0}
   m_textInfo:
     textComponent: {fileID: 809263557}
-    characterCount: 130
+    characterCount: 127
     spriteCount: 0
-    spaceCount: 20
-    wordCount: 21
+    spaceCount: 22
+    wordCount: 23
     linkCount: 0
     lineCount: 3
     pageCount: 1
@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 1333045489}
   m_Layer: 5
   m_Name: EnterButton
-  m_TagString: Untagged
+  m_TagString: EnterButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1225,6 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d32ee22b527a8843ad4e248b795bfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enterButton: {fileID: 0}
   nameEntered: 
   inputField: {fileID: 0}
 --- !u!1 &1944543904
@@ -1290,6 +1291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1333045488}
+  m_FirstSelected: {fileID: 1034055526}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
