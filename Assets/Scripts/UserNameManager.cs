@@ -16,7 +16,7 @@ public class UserNameManager : menuUI
     //Start() is always called before first frame update
     void Start()
     {
-        enterButton = GameObject.FindGameObjectWithTag("EnterButton"); //assigns the empty unity game object to the Enter button from the username entering screen
+        enterButton = GameObject.FindGameObjectWithTag("EnterButton");       //assigns the empty unity game object to the Enter button from the username entering screen
         inputField = GameObject.FindGameObjectWithTag("UsernameInputField"); //assigns inputFeild to the inputFeild game object that appears on screen
     }
 
@@ -35,12 +35,12 @@ public class UserNameManager : menuUI
         }
     }
 
-    //inherits the virtua PlayGame() method from menuUI
+    //inherits the virtual PlayGame() method from menuUI
     //Called when the player hits enter after entering a name
     public override void PlayGame()
     {
-        PlayerPrefs.SetString("userName", nameEntered);// assigns the name entered to a playerpref called userName (playerPrefs act as variables that can be accessed throughout all the scenes in the game
-        SceneManager.LoadScene(1); //loads the main game scene
+        PlayerPrefs.SetString("userName", nameEntered);   // assigns the name entered to a playerpref called userName (playerPrefs act as variables that can be accessed throughout all the scenes in the game
+        SceneManager.LoadScene(1);                        //loads the main game scene
         
 
     }

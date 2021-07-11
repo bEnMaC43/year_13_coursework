@@ -1,8 +1,7 @@
-0:10 ben
 0:22 charlie
 0:26 joe
-0:12 brian
+0:06 brian
 0:15 joel
-0:11 Ellie
-0:18 Jesse
-0:21 Ben
+0:21 Mac
+0:17 Ben
+0:19 BNN

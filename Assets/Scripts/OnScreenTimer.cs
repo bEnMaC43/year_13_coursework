@@ -2,7 +2,7 @@
 //The time must be converted from the pre existing "Time.time" float in unity that keeps track of time spent with application open, to a string of format (minutes):(seconds)
 
 using UnityEngine;
-using UnityEngine.UI;//Whenver this is in use it allows for scripts to interact with UI objects from the unity editor
+using UnityEngine.UI;//Whenever this is in use it allows for scripts to interact with UI objects from the unity editor
 
 public class OnScreenTimer : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class OnScreenTimer : MonoBehaviour
         //this uses string interpolation to store the minutes and seconds value along with a colon as a string that is assigned to the Text Component of the unity text object this script is assigned to
         GetComponent<UnityEngine.UI.Text>().text = $"Time {minutes}:{seconds}";
         PlayerPrefs.SetString("finalTime", $"{minutes}:{seconds}");
-        //a PlayerPref is a a pre built function in unity that allows for the  programmer to permeneantly save int,float or strings accross the entire project
+        //A PlayerPref is a a pre built function in unity that allows for the  programmer to permeneantly save int,float or strings accross the entire project
         //here i have used playerPrefs to store the the time when the player dies  (finalTime) so that it can be displayed at the death menu (which is a different scene to the game in the unity engine)
 
 
